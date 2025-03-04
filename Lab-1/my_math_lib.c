@@ -1,5 +1,6 @@
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 double discriminant(double a, double b, double c) {
   double d = ((b * b) - (4 * a * c));
@@ -27,7 +28,9 @@ void countRoots(double d, double a, double b) {
     printf("Нет действительных корней.\n");
   }
 }
+
 double func(double x) { return x * x; }
+
 double integral(double a, double b, int n) {
   double h = (b - a) / n;
   double sum = 0;
@@ -36,4 +39,40 @@ double integral(double a, double b, int n) {
   }
   double intg = (h / 2) * (func(a) + 2 * sum + func(b));
   return intg;
+}
+
+struct Node {
+  int data;
+  struct Node *next;
+};
+
+struct Node *createNodeList(int n) {
+  if (n == 0) {
+    return NULL;
+  }
+
+  struct Node *nNode = (struct Node *)malloc(sizeof(struct Node));
+  int a;
+  printf("Введите значение узла: \n");
+  scanf("%d", &a);
+  nNode->data = a;
+  nNode->next = createNodeList(n - 1);
+  return nNode;
+}
+
+void printNodeList(struct Node *head) {
+  struct Node *current = head;
+  while (current != NULL) {
+    printf("%d -> ", current->data);
+    current = current->next;
+  }
+  printf("NULL\n");
+}
+void freeMemory(struct Node *head) {
+  struct Node *temp;
+  while (head != NULL) {
+    temp = head;
+    head = head->next;
+    free(temp);
+  }
 }
