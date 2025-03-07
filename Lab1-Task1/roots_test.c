@@ -7,10 +7,11 @@ void root_test_1() {
   double a = 0;
   double b = 1;
   double c = 1;
+  double e = 0;
   double roots[2];
   int root_count;
 
-  find_roots(a, b, c, roots, &root_count);
+  find_roots(a, b, c, roots, &root_count, e);
 
   assert(0 == root_count);
 }
@@ -19,9 +20,10 @@ void root_test_2() {
   double a = 1;
   double b = 0;
   double c = -1;
+  double e = 0;
   double roots[2];
   int root_count;
-  find_roots(a, b, c, roots, &root_count);
+  find_roots(a, b, c, roots, &root_count, 0);
 
   assert(2 == root_count);
   assert(-1 == roots[0]);
@@ -31,10 +33,11 @@ void root_test_3() {
   double a = 1;
   double b = 0;
   double c = 0;
+  double e = 0;
   double roots[2];
   int root_count;
 
-  find_roots(a, b, c, roots, &root_count);
+  find_roots(a, b, c, roots, &root_count, e);
 
   assert(1 == root_count);
   assert(roots[0] == 0);
@@ -43,10 +46,11 @@ void root_test_4() {
   double a = 1;
   double b = 0;
   double c = 1;
+  double e = 0;
   double roots[2];
   int root_count;
 
-  find_roots(a, b, c, roots, &root_count);
+  find_roots(a, b, c, roots, &root_count, e);
 
   assert(0 == root_count);
 }
@@ -58,7 +62,7 @@ void root_test_5() {
   int root_count;
   double epsilon = 0.0001;
 
-  find_roots(a, b, c, roots, &root_count);
+  find_roots(a, b, c, roots, &root_count, epsilon);
 
   assert(2 == root_count);
   assert(fabs(-3E-4 - roots[0]) < epsilon);
@@ -72,26 +76,26 @@ void root_test_6() {
   int root_count;
   double epsilon = 1e-11;
 
-  find_roots(a, b, c, roots, &root_count);
+  find_roots(a, b, c, roots, &root_count, epsilon);
 
   assert(2 == root_count);
+
   assert(fabs(-1E-10 - roots[0]) < epsilon);
   assert(fabs(1E+10 - roots[1]) < epsilon);
 }
 void root_test_7() {
   double a = 1;
   double b = 0;
-  double c = -1E-8;
+  double c = -1e-8;
+  double epsilon_d = 1e-3;
+  double epsilon_r = 1e-7;
   double roots[2];
   int root_count;
-  double epsilon = 1E-7;
 
-  find_roots(a, b, c, roots, &root_count);
-
+  find_roots(a, b, c, roots, &root_count, epsilon_d);
   assert(1 == root_count);
-  assert(fabs(0 - roots[0]) < epsilon);
+  assert(fabs(0 - roots[0]) < epsilon_r);
 }
-
 int main() {
   root_test_1();
   root_test_2();
@@ -100,5 +104,6 @@ int main() {
   root_test_5();
   root_test_6();
   root_test_7();
+
   return 0;
 }
