@@ -4,8 +4,10 @@ stack.o: stack.c stack.h
 stack.a: stack.o
 	ar rc stack.a stack.o
 
+.PHONY: stack 
+
 stack: stack.o stack.a
 	gcc -g -static -o stack stack.o stack.a
 	./stack
 clean:
-	rm -rf *.o
+	rm -rf *.o stack.a stack
