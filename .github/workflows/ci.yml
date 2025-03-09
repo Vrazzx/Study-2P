@@ -1,0 +1,30 @@
+name: CI for C project
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y gcc make clang-format
+
+      - name: Check code formatting
+        run: |
+          find . -name '*.c' -o -name '*.h' | xargs clang-format --dry-run --Werror
+
+      - name: Build project
+        run: make
+
+      - name: Run tests
+        run: make run
+
