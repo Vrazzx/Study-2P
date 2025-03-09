@@ -20,7 +20,8 @@ jobs:
 
       - name: Check code formatting
         run: |
-          find . -name '*.c' -o -name '*.h' | xargs clang-format --dry-run --Werror
+          find . -regex '.*\.[ch]' -exec clang-format -style=LLVM -i {} +
+          find . -regex '.*\.[ch]' -exec clang-format -style=LLVM --dry-run --Werror {} +
 
       - name: Build project
         run: make
