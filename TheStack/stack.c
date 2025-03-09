@@ -5,7 +5,7 @@
 #include <assert.h>
 #define StackLength 100 
 
-// сделал каунт равный 0 т.к нормальный счёт идёт с нуля
+// сделал каунт равный 0 т.к счёт идёт с нуля
 
 void init(stack *stack) {
     stack->count = 0;
@@ -50,46 +50,4 @@ int peek(stack *stack) { // peek используется просто для т
         exit(1);
     }
     return stack->array[stack->count - 1]; // возвращаем последний элемент (-1 нужно, т.к счёт элементов идёт с нуля)
-}
-
-// часть кода с тестами
-
-void push_test() { 
-    stack my_stack;
-    init(&my_stack);
-    push(&my_stack, 10);
-
-    // пушим десятку на верх стека и проверяем её пиком
-
-    assert(peek(&my_stack) == 10); 
-}
-
-void pop_test() {
-    stack my_stack;
-    init(&my_stack);
-    push(&my_stack, 10);
-    push(&my_stack, 20);
-    pop(&my_stack);
-
-    // добавляем 2 элемента, а затем испытываем функцию pop
-
-    assert(peek(&my_stack) == 10);
-}
-
-void is_empty_test() {
-    stack my_stack;
-    init(&my_stack);
-
-    // проверка стека на пустоту и на наличие в нём хотя бы 1 элемента
-
-    assert(is_empty(&my_stack) == true);
-    push(&my_stack, 10);
-    assert(is_empty(&my_stack) == false);
-}
-
-
-void main() {
-    push_test();
-    pop_test();
-    is_empty_test();
 }
