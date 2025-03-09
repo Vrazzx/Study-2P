@@ -18,7 +18,7 @@ void find_roots(double a, double b, double c, double roots[2], int *root_count,
     discrimenant = 0;
   }
   if (discrimenant > 0) {
-    if(a == 1){
+    if (a == 1) {
       if (b > 0) {
         roots[0] = (-b - sqrt(discrimenant)) / (2 * a);
         roots[1] = c / (a * roots[0]);
@@ -26,11 +26,11 @@ void find_roots(double a, double b, double c, double roots[2], int *root_count,
         roots[1] = (-b + sqrt(discrimenant)) / (2 * a);
         roots[0] = c / (a * roots[1]);
       }
-    } else{
+    } else {
       roots[0] = (-b + sqrt(discrimenant)) / 2 * a;
       roots[1] = (-b - sqrt(discrimenant)) / 2 * a;
     }
-    
+
     *root_count = 2;
 
     if (roots[0] > roots[1]) {
