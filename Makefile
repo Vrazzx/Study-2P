@@ -3,11 +3,8 @@ fmt:
 check_fmt:
 	find . -regex '.*\.[ch]' -exec clang-format -style=LLVM --dry-run --Werror {} +
 
-run_makefile:
-	find . -name "Makefile" -exec make -C \{\} \;
-
-run_tests:
-	find . -type f -name "_test*" -executable -exec {} \;
+run:
+	find . -name "Makefile" -execdir make -f {} \; && find . -type f -name "*_test" -exec {} \;
 
 clean:
-	rm -rf *.o *.a *_test
+	find . -type f \( -name "*.o" -o -name "*.a" -o -name "*_test" \) -exec rm -f {} +
