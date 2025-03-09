@@ -8,14 +8,17 @@ check_fmt:
 libfunc.a: roots_function.o
 	ar rc libfunc.a roots_function.o
 
-Task1_test: roots_test.o libfunc.a
-	gcc roots_test.o -L. -lfunc -o Task1_test -lm
+Task1_test: tests/roots_test.o libfunc.a
+	gcc tests/roots_test.o -L. -lfunc -o Task1_test -lm
 
-roots_test.o: roots_test.c
-	gcc -c roots_test.c -o roots_test.o  
+tests/roots_test.o: tests/roots_test.c
+	gcc -c tests/roots_test.c -o tests/roots_test.o -I.  
 
 roots_function.o: roots_function.c
-	gcc -c roots_function.c -o roots_function.o   
+	gcc -c roots_function.c -o roots_function.o -I.
+
+run:
+	./Task1_test
 
 clean:
 	rm -rf *.o *.a *_test

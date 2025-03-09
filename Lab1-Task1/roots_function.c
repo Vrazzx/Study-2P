@@ -3,9 +3,15 @@
 
 void find_roots(double a, double b, double c, double roots[2], int *root_count,
                 double epsilon) {
-  if (a == 0) {
+  if (a == 0 || a < epsilon) {
     *root_count = 0;
     return;
+  }
+  if (fabs(b) < epsilon) {
+    b = 0;
+  }
+  if (fabs(c) < epsilon) {
+    c = 0;
   }
   double discrimenant = (b * b) - 4 * a * c;
   if (sqrt(discrimenant) < epsilon) {

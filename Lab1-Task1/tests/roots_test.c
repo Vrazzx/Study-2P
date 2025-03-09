@@ -60,13 +60,13 @@ void root_test_5() {
   double c = -1E-7;
   double roots[2];
   int root_count;
-  double epsilon = 0.0001;
+  double epsilon = 1e-8;
 
   find_roots(a, b, c, roots, &root_count, epsilon);
 
   assert(2 == root_count);
-  assert(fabs(-3E-4 - roots[0]) < epsilon);
-  assert(fabs(3E-4 - roots[1]) < epsilon);
+  assert(fabs(-3E-4 - roots[0]) < 0.0001);
+  assert(fabs(3E-4 - roots[1]) < 0.0001);
 }
 void root_test_6() {
   double a = 1;
@@ -87,14 +87,13 @@ void root_test_7() {
   double a = 1;
   double b = 0;
   double c = -1e-8;
-  double epsilon_d = 1e-3;
-  double epsilon_r = 1e-7;
+  double epsilon = 1e-7;
   double roots[2];
   int root_count;
 
-  find_roots(a, b, c, roots, &root_count, epsilon_d);
+  find_roots(a, b, c, roots, &root_count, epsilon);
   assert(1 == root_count);
-  assert(fabs(0 - roots[0]) < epsilon_r);
+  assert(fabs(0 - roots[0]) < epsilon);
 }
 int main() {
   root_test_1();
