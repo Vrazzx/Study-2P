@@ -1,5 +1,5 @@
 # Цель по умолчанию
-all: Task2_test
+all: Integral_test
 
 # Форматирование кода
 fmt:
@@ -14,8 +14,8 @@ libmath.a:  integral_test.o
 	ar rc libmath.a  integral_test.o
 
 # Сборка тестового исполняемого файла для интеграла
-Task2_test: integral_test.o libmath.a
-	gcc integral_test.o -L. -lmath -o Task2_test -lm
+Integral_test: integral_test.o libmath.a
+	gcc integral_test.o -L. -lmath -o Integral_test -lm
 
 # Компиляция объектного файла для теста интеграла
 integral_test.o: integral_test.c
@@ -27,6 +27,6 @@ integral.o: integral.c
 
 # Очистка
 clean:
-	rm -rf *.o libmath.a Task1_test Task2_test
-ispolt:
-	make Task2_test && ./Task2_test
+	rm -rf *.o libmath.a Task1_test Integral_test
+run:
+	./Integral_test

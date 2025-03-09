@@ -1,4 +1,4 @@
-#include "hggp.h"
+#include "Integral_function.h"
 void integral_test1() {
   double a = 0;  // нижний предел Интеграла
   double b = 20; // верхний предел интеграла
