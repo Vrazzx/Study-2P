@@ -20,12 +20,18 @@ jobs:
 
       - name: Check code formatting
         run: |
+          set -e
           find . -regex '.*\.[ch]' -exec clang-format -style=LLVM -i {} +
           find . -regex '.*\.[ch]' -exec clang-format -style=LLVM --dry-run --Werror {} +
 
       - name: Build project
-        run: make
+        run: |
+          set -e
+          make
+
 
       - name: Run tests
-        run: make run
+        run: |
+          set -e
+          make run
 
