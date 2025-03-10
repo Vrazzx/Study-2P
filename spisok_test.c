@@ -4,65 +4,65 @@
 
 void test_insert_front()
 {
-    Node* list = list_create();
-    insert_front(&list, 10);
-    insert_front(&list, 20);
+    Node* spisok = spisok_create();
+    insert_front(&spisok, 10);
+    insert_front(&spisok, 20);
     
     int err;
-    assert(get(list, 0, &err) == 20);
-    assert(get(list, 1, &err) == 10);
-    assert(list_size(list) == 2);
+    assert(get(spisok, 0, &err) == 20);
+    assert(get(spisok, 1, &err) == 10);
+    assert(spisok_size(spisok) == 2);
     
-    list_destroy(&list);
+    spisok_destroy(&spisok);
 }
 
 void test_insert_back()
 {
-    Node* list = list_create();
-    insert_back(&list, 10);
-    insert_back(&list, 20);
+    Node* spisok = spisok_create();
+    insert_back(&spisok, 10);
+    insert_back(&spisok, 20);
     
     int err;
-    assert(get(list, 0, &err) == 10);
-    assert(get(list, 1, &err) == 20);
-    assert(list_size(list) == 2);
+    assert(get(spisok, 0, &err) == 10);
+    assert(get(spisok, 1, &err) == 20);
+    assert(spisok_size(spisok) == 2);
     
-    list_destroy(&list);
+    spisok_destroy(&spisok);
 }
 
 void test_insert_at()
 {
-    Node* list = list_create();
-    insert_at(&list, 5, 30); // В пустой список
-    insert_at(&list, 0, 10); // В начало
-    insert_at(&list, 2, 20); // В конец
-    insert_at(&list, 1, 15); // В середину
+    Node* spisok = spisok_create();
+    insert_at(&spisok, 5, 30); // В пустой список
+    insert_at(&spisok, 0, 10); // В начало списка
+    insert_at(&spisok, 2, 20); // В конец списка
+    insert_at(&spisok, 1, 15); // В середину списка
     
     int err;
-    assert(get(list, 0, &err) == 10);
-    assert(get(list, 1, &err) == 15);
-    assert(get(list, 2, &err) == 30);
-    assert(get(list, 3, &err) == 20);
+    assert(get(spisok, 0, &err) == 10);
+    assert(get(spisok, 1, &err) == 15);
+    assert(get(spisok, 2, &err) == 30);
+    assert(get(spisok, 3, &err) == 20);
     
-    list_destroy(&list);
+    spisok_destroy(&spisok);
 }
 
 void test_delete()
 {
-    Node* list = list_create();
-    insert_back(&list, 10);
-    insert_back(&list, 20);
-    insert_back(&list, 30);
+    Node* spisok = spisok_create();
+    insert_back(&spisok, 10);
+    insert_back(&spisok, 20);
+    insert_back(&spisok, 30);
     
-    delete_at(&list, 1);
-    assert(list_size(list) == 2);
+    delete_at(&spisok, 1);
+    assert(spisok_size(spisok) == 2);
     int err;
-    assert(get(list, 1, &err) == 30);
+    assert(get(spisok, 1, &err) == 30);
     
-    delete_at(&list, 0);
-    assert(list_size(list) == 1);
+    delete_at(&spisok, 0);
+    assert(spisok_size(spisok) == 1);
     
-    list_destroy(&list);
+    spisok_destroy(&spisok);
 }
 
 int main()
@@ -71,6 +71,6 @@ int main()
     test_insert_back();
     test_insert_at();
     test_delete();
-    printf("All tests passed!\n");
+    printf("Всё пройдено!\n");
     return 0;
 }
