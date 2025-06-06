@@ -28,7 +28,7 @@ arraylist_test.o: arraylist_test.c
 arraylist_test: arraylist_test.o arraylist.a pool_allocator.a
 	gcc -g -static arraylist_test.o arraylist.a pool_allocator.a -o arraylist_test
 
-test: arraylist_test
+run: arraylist_test
 	@for test in $(shell find . -maxdepth 1 -type f -name '*_test'); do \
 		echo "$$test is running"; \
 		./$$test || exit 1; \
